@@ -842,3 +842,82 @@ footer small, .legal { color: #A8A6A2; }
   #calc .result b { font-size: 44px; }
   #calc .seg { white-space: normal; }
 }
+
+.home .geo { padding: 40px 0 28px; background: var(--bg); }
+.home .geo .head { margin-bottom: 16px; }
+.home .city-row {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+}
+.home .city-card {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  background: #fff;
+  border: 1px solid var(--line);
+  border-radius: 4px;
+  padding: 18px 20px 16px;
+  min-height: 100%;
+}
+.home .city-card h3 { margin: 0; font-size: 20px; }
+.home .city-card p { margin: 0; color: var(--muted); font-size: 14px; line-height: 1.45; }
+.home .city-card b { margin-top: 8px; font-size: 14px; font-weight: 600; color: var(--ink); }
+.home .city-card:hover { border-color: var(--accent); }
+.home .city-card:hover b { color: var(--accent-hover); }
+
+.home .offers { padding: 48px 0 56px; background: #fff; }
+.home .offers .head { margin-bottom: 22px; }
+.home .offer-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+}
+.home .offer {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 22px;
+  min-height: 196px;
+  padding: 24px 24px 18px;
+  background: var(--bg);
+  border: 1px solid var(--line);
+  border-radius: 4px;
+}
+.home .offer h3 { margin: 0 0 8px; font-size: 22px; line-height: 1.25; }
+.home .offer h3 a:hover { color: var(--accent-hover); }
+.home .offer p { margin: 0; color: var(--muted); font-size: 15px; }
+.home .offer-foot {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 12px;
+  margin-top: auto;
+  padding-top: 14px;
+  border-top: 1px solid var(--line);
+}
+.home .offer-foot b {
+  font-size: 22px;
+  font-weight: 700;
+  letter-spacing: -0.03em;
+  color: var(--accent-hover);
+}
+.home .offer-foot a { display: inline-flex; align-items: center; min-height: 44px; color: var(--ink); font-weight: 600; font-size: 15px; }
+.home .offer-foot a:hover { color: var(--accent-hover); }
+.home .offer-actions { display: flex; gap: 12px; flex-wrap: wrap; margin-top: 24px; }
+.home .offer-actions .btn { border-radius: 4px; min-height: 48px; }
+
+@media (max-width: 980px) {
+  .home .offer-grid { grid-template-columns: 1fr 1fr; }
+}
+
+@media (max-width: 760px) {
+  .home .geo { padding: 28px 0 8px; }
+  .home .offers { padding: 32px 0 40px; }
+  .home .city-row, .home .offer-grid { grid-template-columns: 1fr; }
+  .home .offer { min-height: 0; padding: 20px 18px 16px; }
+  .home .offer h3 { font-size: 20px; }
+  .home .city-card { min-height: 44px; }
+  .home .offer-actions { flex-direction: column; }
+  .home .offer-actions .btn { width: 100%; }
+}
