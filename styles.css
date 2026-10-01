@@ -911,9 +911,65 @@ footer small, .legal { color: #A8A6A2; }
   .home .offer-grid { grid-template-columns: 1fr 1fr; }
 }
 
+.home .why { padding: 72px 0 56px; }
+.home .why .head { max-width: 780px; margin-bottom: 8px; }
+.home .why h2 { max-width: 16em; }
+.home .why-list {
+  list-style: none;
+  margin: 28px 0 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  border-top: 1px solid rgba(255, 255, 255, 0.16);
+}
+.home .why-list li {
+  display: grid;
+  grid-template-columns: 64px 1fr;
+  gap: 6px 18px;
+  align-items: start;
+  margin: 0;
+  padding: 28px 36px 28px 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.16);
+}
+.home .why-list li:nth-child(even) {
+  padding-left: 36px;
+  border-left: 1px solid rgba(255, 255, 255, 0.16);
+}
+.home .why-list span {
+  font-size: 32px;
+  font-weight: 700;
+  line-height: 1;
+  letter-spacing: -0.04em;
+  color: var(--accent);
+}
+.home .why-list h3 {
+  margin: 2px 0 8px;
+  font-size: 28px;
+  line-height: 1.15;
+  letter-spacing: -0.03em;
+  color: #fff;
+}
+.home .why-list p {
+  margin: 0;
+  max-width: 34em;
+  color: var(--on-dark);
+  font-size: 16px;
+}
+
 @media (max-width: 760px) {
   .home .geo { padding: 28px 0 8px; }
   .home .offers { padding: 32px 0 40px; }
+  .home .why { padding: 40px 0 28px; }
+  .home .why-list { grid-template-columns: 1fr; margin-top: 20px; }
+  .home .why-list li,
+  .home .why-list li:nth-child(even) {
+    grid-template-columns: 46px 1fr;
+    gap: 4px 12px;
+    padding: 20px 0;
+    border-left: 0;
+  }
+  .home .why-list span { font-size: 24px; }
+  .home .why-list h3 { font-size: 22px; }
   .home .city-row, .home .offer-grid { grid-template-columns: 1fr; }
   .home .offer { min-height: 0; padding: 20px 18px 16px; }
   .home .offer h3 { font-size: 20px; }
