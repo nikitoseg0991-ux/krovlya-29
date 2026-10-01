@@ -628,14 +628,25 @@ footer small, .legal { color: #A8A6A2; }
   border-bottom: 1px solid var(--line);
 }
 .home .nav { min-height: 68px; gap: 24px; }
-.home .logo-mark {
-  width: 34px;
-  height: 34px;
-  border-radius: 2px;
-  box-shadow: none;
-  font-size: 13px;
+.home .logo-person {
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 1px;
+  flex: 0 1 auto;
+  line-height: 1;
 }
-.home .logo-text { font-weight: 700; font-size: 16px; letter-spacing: -0.03em; }
+.home .logo-name {
+  font-weight: 800;
+  font-size: 18px;
+  letter-spacing: 0.12em;
+  color: var(--ink);
+}
+.home .logo-role {
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.01em;
+  color: var(--muted);
+}
 .home .menu { gap: 26px; font-size: 14px; font-weight: 500; color: var(--muted); }
 .home .menu a:hover { color: var(--ink); }
 .home .phone { font-size: 14px; font-weight: 600; letter-spacing: -0.01em; }
@@ -664,14 +675,14 @@ footer small, .legal { color: #A8A6A2; }
 .home .hero .eyebrow { margin: 0; letter-spacing: 0.14em; font-size: 12px; }
 .home .hero h1 {
   max-width: 8.2em;
-  margin: 14px 0 0;
+  margin: 0;
   font-size: 58px;
   line-height: 1.02;
   letter-spacing: -0.045em;
   font-weight: 700;
 }
 .home .hero-rate {
-  margin: 22px 0 16px;
+  margin: 18px 0 0;
   font-size: 46px;
   line-height: 1;
   font-weight: 700;
@@ -679,11 +690,36 @@ footer small, .legal { color: #A8A6A2; }
   color: var(--accent);
 }
 .home .hero .lead {
-  max-width: 440px;
+  max-width: 520px;
+  margin-top: 16px;
   font-size: 17px;
   line-height: 1.5;
   color: var(--muted);
 }
+.home .hero-personal {
+  align-self: flex-start;
+  margin: 18px 0 0;
+  padding: 8px 12px 8px 14px;
+  background: var(--graphite);
+  color: #fff;
+  font-size: 16px;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  line-height: 1.3;
+  box-shadow: inset 3px 0 0 var(--accent);
+}
+.home .hero-call {
+  display: inline-flex;
+  align-items: center;
+  align-self: flex-start;
+  min-height: 44px;
+  margin-top: 16px;
+  color: var(--ink);
+  font-size: 18px;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+}
+.home .hero-call:hover { color: var(--accent-hover); }
 .home .hero .actions { margin: 28px 0 0; gap: 10px; }
 .home .hero .btn { border-radius: 2px; min-height: 48px; padding: 12px 22px; }
 .home .hero .secondary { background: transparent; }
@@ -724,6 +760,10 @@ footer small, .legal { color: #A8A6A2; }
 }
 
 @media (max-width: 760px) {
+  .home .nav-side .phone { display: inline; font-size: 13px; }
+  .home .header-cta { display: none; }
+  .home .logo-name { font-size: 15px; letter-spacing: 0.08em; }
+  .home .logo-role { font-size: 10px; }
   .home .header-cta { border-radius: 2px; }
   .home .burger { border-radius: 2px; }
   .home .hero { padding: 0; }
@@ -735,8 +775,10 @@ footer small, .legal { color: #A8A6A2; }
   .home .hero .proof { order: 0; }
   .home .hero-copy { display: flex; padding: 22px 20px 28px; }
   .home .hero h1 { max-width: none; font-size: 34px; line-height: 1.08; }
-  .home .hero-rate { font-size: 32px; margin: 12px 0 10px; }
+  .home .hero-rate { font-size: 32px; margin: 14px 0 0; }
   .home .hero .lead { font-size: 16px; }
+  .home .hero-personal { margin-top: 14px; font-size: 15px; }
+  .home .hero-call { font-size: 17px; margin-top: 12px; }
   .home .hero .actions { flex-direction: column; align-items: stretch; margin-top: 16px; }
   .home .hero .actions .btn { width: 100%; }
   .home .hero .actions .secondary {
