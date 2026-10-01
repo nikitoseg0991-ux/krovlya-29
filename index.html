@@ -59,13 +59,12 @@
 <section class="section" id="calc">
   <div class="wrap">
     <div class="head">
-      <div class="eyebrow">Быстрый расчёт</div>
       <h2>Рассчитайте стоимость кровельных работ</h2>
-      <p>Выберите покрытие и площадь — сразу покажем ориентир по прайсу. Материалы считаются отдельно.</p>
+      <p>Укажите параметры крыши — сразу получите ориентировочную стоимость работ.</p>
     </div>
     <div class="calc-shell">
       <div class="calcgrid">
-        <div>
+        <div class="calc-params">
           <div class="calc-kicker"><span>01</span> Выберите покрытие</div>
           <div class="cover-grid">
             <button type="button" class="cover-card is-active" data-work="800" data-name="Металлочерепица">
@@ -85,10 +84,7 @@
               <div class="meta"><b>Фальцевая кровля</b><small>1 550 ₽/м²</small></div>
             </button>
           </div>
-        </div>
-        <form class="calc" onsubmit="return false">
-          <div class="calc-kicker"><span>02</span> Параметры</div>
-          <div class="field-label">Площадь кровли</div>
+          <div class="calc-kicker"><span>02</span> Площадь кровли</div>
           <div class="stepper">
             <button type="button" id="area-minus" aria-label="Уменьшить площадь">−</button>
             <div class="stepper-field"><input id="area" type="number" value="100" min="1" max="500"><em>м²</em></div>
@@ -101,17 +97,22 @@
             <option value="1550">Фальцевая кровля</option>
             <option value="750">Шифер</option>
           </select>
-          <div class="field-label">Дополнительные работы</div>
+          <div class="calc-kicker"><span>03</span> Дополнительные работы</div>
           <div class="chips">
-            <label class="seg"><input id="ob" type="checkbox"> Обрешётка +340 ₽/м²</label>
-            <label class="seg"><input id="counter" type="checkbox"> Контробрешётка +250 ₽/м²</label>
-            <label class="seg"><input id="vvz" type="checkbox"> ВВЗ +180 ₽/м²</label>
+            <label class="seg"><input id="ob" type="checkbox"><span>Обрешётка</span><b>+340 ₽/м²</b></label>
+            <label class="seg"><input id="counter" type="checkbox"><span>Контробрешётка</span><b>+250 ₽/м²</b></label>
+            <label class="seg"><input id="vvz" type="checkbox"><span>ВВЗ</span><b>+180 ₽/м²</b></label>
           </div>
-          <div class="result"><span>Ориентировочная стоимость работ</span><b id="sum">—</b></div>
-          <p class="formula" id="formula"></p>
-          <p class="small">Предварительный расчёт. Конёк, ендовы, водосток, свесы и другие элементы считаются отдельно.</p>
-          <a class="btn primary" href="tel:+79214840874">Получить точный расчёт</a>
-          <a class="calc-phone" href="tel:+79214840874">+7 921 484-08-74</a>
+        </div>
+        <form class="calc" onsubmit="return false">
+          <div class="result">
+            <span>Ориентировочная стоимость работ</span>
+            <b id="sum">—</b>
+            <p class="formula" id="formula"></p>
+            <p class="small">Точная стоимость определяется после уточнения размеров и состава работ.</p>
+          </div>
+          <a class="btn primary" href="kontakty.html">Получить точный расчёт</a>
+          <p class="calc-call">Или позвоните: <a href="tel:+79214840874">+7 921 484-08-74</a></p>
         </form>
       </div>
     </div>
