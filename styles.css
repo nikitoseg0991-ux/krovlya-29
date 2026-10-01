@@ -977,3 +977,39 @@ footer small, .legal { color: #A8A6A2; }
   .home .offer-actions { flex-direction: column; }
   .home .offer-actions .btn { width: 100%; }
 }
+
+.home .steps {
+  grid-template-columns: repeat(4, 1fr);
+  gap: 32px;
+}
+.home .steps::before { top: 16px; display: block; }
+.home .step-item .stepno {
+  font-size: 28px;
+  line-height: 1;
+  letter-spacing: -0.04em;
+  padding-right: 12px;
+  background: #fff;
+}
+.home .step-item h3 { font-size: 20px; line-height: 1.25; margin: 16px 0 8px; }
+.home .step-item p { font-size: 15px; line-height: 1.45; }
+
+@media (max-width: 1100px) {
+  .home .steps { grid-template-columns: repeat(4, 1fr); }
+  .home .steps::before { display: block; }
+}
+
+@media (max-width: 760px) {
+  .home .steps { grid-template-columns: 1fr; gap: 0; }
+  .home .steps::before { display: none; }
+  .home .step-item {
+    display: grid;
+    grid-template-columns: 44px 1fr;
+    gap: 2px 12px;
+    align-items: start;
+    padding: 18px 0;
+    border-bottom: 1px solid var(--line);
+  }
+  .home .step-item:last-child { border-bottom: 0; padding-bottom: 0; }
+  .home .step-item .stepno { font-size: 22px; padding-right: 0; }
+  .home .step-item h3 { margin: 0 0 6px; font-size: 18px; }
+}
