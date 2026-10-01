@@ -81,11 +81,11 @@ function makeLead() {
   const n = document.querySelector("#leadname")?.value || "не указано";
   const city = document.querySelector("#leadcity")?.value || "не указан";
   const text = document.querySelector("#leadtext")?.value || "без комментария";
-  const s = `Заявка с сайта Кровля 29\nИмя: ${n}\nГород: ${city}\nКомментарий: ${text}\nТелефон для связи: +7 921 484-08-74`;
+  const s = `Заявка\nИмя: ${n}\nГород: ${city}\nКомментарий: ${text}\nТелефон для связи: +7 921 484-08-74`;
   const o = document.querySelector("#leadout");
   if (o) {
     o.style.display = "block";
-    o.textContent = s + "\n\nПозвоните или найдите номер +7 921 484-08-74 в MAX и отправьте сообщение.";
+    o.textContent = s + "\n\nПозвоните или отправьте это сообщение в MAX.";
   }
   navigator.clipboard?.writeText(s);
   return false;
