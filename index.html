@@ -36,14 +36,21 @@
 <section class="hero">
   <div class="wrap hero-stage">
     <div class="hero-copy">
-      <h1>Кровельные работы<br>в Архангельске</h1>
-      <p class="lead">Монтаж и замена кровли частных домов в Архангельске, Северодвинске и Новодвинске.</p>
-      <p class="hero-personal">Работаю лично, без посредников</p>
-      <div class="actions">
-        <a class="btn primary" href="#calc">Рассчитать стоимость</a>
-        <a class="btn secondary max-btn" href="https://max.ru/u/f9LHodD0cOJztIhUMjfDdnmmolvnSJQpTHQgJxTjDoeIrlFngw5k__L-A5U"><img class="max-mark" src="assets/max.svg" width="20" height="20" alt="">Отправить фото крыши</a>
+      <p class="hero-kicker">Никита · кровельный мастер</p>
+      <div class="hero-main">
+        <h1>Кровельные работы<br>в Архангельске</h1>
+        <p class="lead">Монтаж и замена кровли частных домов в Архангельске, Северодвинске и Новодвинске.</p>
+        <div class="actions">
+          <a class="btn primary" href="#calc">Рассчитать стоимость</a>
+          <a class="btn secondary max-btn" href="https://max.ru/u/f9LHodD0cOJztIhUMjfDdnmmolvnSJQpTHQgJxTjDoeIrlFngw5k__L-A5U"><img class="max-mark" src="assets/max.svg" width="20" height="20" alt="">Отправить фото крыши</a>
+        </div>
+        <a class="hero-call" href="tel:+79214840874"><span>Позвонить:</span> +7 921 484-08-74</a>
       </div>
-      <a class="hero-call" href="tel:+79214840874">Позвонить: +7 921 484-08-74</a>
+      <ul class="hero-facts">
+        <li>Работаю лично</li>
+        <li>Без посредников</li>
+        <li>Архангельск · Северодвинск · Новодвинск</li>
+      </ul>
     </div>
     <div class="hero-photo">
       <img src="assets/hero.jpg" alt="Современный частный дом с новой кровлей">
@@ -61,6 +68,7 @@
     <div class="calc-shell">
       <div class="calcgrid">
         <div class="calc-params">
+          <div class="calc-group calc-group-cover">
           <div class="calc-kicker"><span>01</span> Выберите покрытие</div>
           <div class="cover-grid">
             <button type="button" class="cover-card is-active" data-work="800" data-name="Металлочерепица">
@@ -80,6 +88,8 @@
               <div class="meta"><b>Фальцевая кровля</b><small>1 550 ₽/м²</small></div>
             </button>
           </div>
+          </div>
+          <div class="calc-group calc-group-area">
           <div class="calc-kicker"><span>02</span> Площадь кровли</div>
           <div class="stepper">
             <button type="button" id="area-minus" aria-label="Уменьшить площадь">−</button>
@@ -93,26 +103,43 @@
             <option value="1550">Фальцевая кровля</option>
             <option value="750">Шифер</option>
           </select>
+          </div>
+          <div class="calc-group calc-group-extras">
           <div class="calc-kicker"><span>03</span> Дополнительные работы</div>
           <div class="chips">
-            <label class="seg"><input id="ob" type="checkbox"><span>Обрешётка</span><b>+340 ₽/м²</b></label>
-            <label class="seg"><input id="counter" type="checkbox"><span>Контробрешётка</span><b>+250 ₽/м²</b></label>
-            <label class="seg"><input id="vvz" type="checkbox"><span>ВВЗ</span><b>+180 ₽/м²</b></label>
+            <label class="seg"><input id="ob" type="checkbox"><span>Обрешётка</span><b>+340 ₽/м²</b><i class="seg-mark" aria-hidden="true"></i></label>
+            <label class="seg"><input id="counter" type="checkbox"><span>Контробрешётка</span><b>+250 ₽/м²</b><i class="seg-mark" aria-hidden="true"></i></label>
+            <label class="seg"><input id="vvz" type="checkbox"><span>ВВЗ</span><b>+180 ₽/м²</b><i class="seg-mark" aria-hidden="true"></i></label>
+          </div>
           </div>
         </div>
         <form class="calc" onsubmit="return false">
           <div class="result">
             <span>Ориентировочная стоимость работ</span>
             <b id="sum">—</b>
-            <p class="formula" id="formula"></p>
+            <div class="calc-line">
+              <em>Параметры расчёта</em>
+              <p class="formula" id="formula"></p>
+            </div>
+            <div class="calc-line calc-line-extras">
+              <em>Дополнительные работы</em>
+              <ul class="calc-extras">
+                <li class="x-none">Не выбраны</li>
+                <li class="x-ob">Обрешётка <b>+340 ₽/м²</b></li>
+                <li class="x-counter">Контробрешётка <b>+250 ₽/м²</b></li>
+                <li class="x-vvz">ВВЗ <b>+180 ₽/м²</b></li>
+              </ul>
+            </div>
             <p class="small">Точная стоимость определяется после уточнения размеров и состава работ.</p>
+            <a class="calc-note" href="ceny.html">Материалы считаются отдельно — смотреть прайс на работы →</a>
           </div>
-          <a class="btn primary" href="kontakty.html">Получить точный расчёт</a>
-          <p class="calc-call">Или позвоните: <a href="tel:+79214840874">+7 921 484-08-74</a></p>
+          <div class="calc-actions">
+            <a class="btn primary" href="kontakty.html">Получить точный расчёт</a>
+            <p class="calc-call">Или позвоните: <a href="tel:+79214840874">+7 921 484-08-74</a></p>
+          </div>
         </form>
       </div>
     </div>
-    <a class="calc-note" href="ceny.html">Материалы считаются отдельно — смотреть прайс на работы →</a>
   </div>
 </section>
 
@@ -235,7 +262,7 @@
   </div>
 </section>
 
-<section class="section white">
+<section class="section white process">
   <div class="wrap">
     <div class="head head-row">
       <div>
@@ -310,16 +337,18 @@
 </section>
 
 <section class="section cta-band">
-  <div class="wrap cta-grid">
-    <div>
-      <div class="eyebrow">Рассчитаю вашу крышу</div>
-      <h2>Узнайте стоимость работ для вашего дома</h2>
-      <p>Позвоните и сообщите размеры дома, тип крыши и текущее покрытие. Для начала этого достаточно.</p>
+  <div class="wrap">
+    <div class="cta-panel">
+      <div class="cta-copy">
+        <div class="eyebrow">Рассчитаю вашу крышу</div>
+        <h2>Узнайте стоимость работ для вашего дома</h2>
+      </div>
+      <p class="cta-text">Позвоните и сообщите размеры дома, тип крыши и текущее покрытие. Для начала этого достаточно.</p>
       <p class="cta-phone"><a href="tel:+79214840874">+7 921 484-08-74</a></p>
-    </div>
-    <div class="cta-card">
-      <a class="btn primary" href="tel:+79214840874">Позвонить +7 921 484-08-74</a>
-      <a class="btn secondary max-btn" href="https://max.ru/u/f9LHodD0cOJztIhUMjfDdnmmolvnSJQpTHQgJxTjDoeIrlFngw5k__L-A5U"><img class="max-mark" src="assets/max.svg" width="20" height="20" alt="">Написать в MAX</a>
+      <div class="cta-card">
+        <a class="btn primary" href="tel:+79214840874">Позвонить +7 921 484-08-74</a>
+        <a class="btn secondary max-btn" href="https://max.ru/u/f9LHodD0cOJztIhUMjfDdnmmolvnSJQpTHQgJxTjDoeIrlFngw5k__L-A5U"><img class="max-mark" src="assets/max.svg" width="20" height="20" alt="">Написать в MAX</a>
+      </div>
     </div>
   </div>
 </section>
