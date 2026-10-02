@@ -88,6 +88,143 @@ faqItems.forEach((item, i) => {
   });
 });
 
+const portfolio = document.querySelector(".portfolio");
+if (portfolio) {
+  const track = portfolio.querySelector(".pf-track");
+  const items = [...track.querySelectorAll(".pf-item")];
+  const [prevBtn, nextBtn] = portfolio.querySelectorAll(".pf-arrow");
+  const counter = portfolio.querySelector(".pf-count");
+
+  const perView = () => parseInt(getComputedStyle(portfolio).getPropertyValue("--pf-per"), 10) || 1;
+  const step = () => items[0].offsetWidth + parseFloat(getComputedStyle(track).columnGap || 0);
+  const pages = () => Math.ceil(items.length / perView());
+  const currentPage = () => {
+    const max = track.scrollWidth - track.clientWidth;
+    if (track.scrollLeft >= max - 2) return pages() - 1;
+    return Math.round(track.scrollLeft / (step() * perView()));
+  };
+  const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
+  let targetPage = null;
+  let anim = 0;
+  let animTimer = 0;
+  const render = (page) => {
+    counter.textContent = `${page + 1} / ${pages()}`;
+    prevBtn.disabled = page === 0;
+    nextBtn.disabled = page === pages() - 1;
+  };
+  const update = () => {
+    if (anim) return;
+    targetPage = null;
+    render(currentPage());
+  };
+  const finish = (left) => {
+    cancelAnimationFrame(anim);
+    clearTimeout(animTimer);
+    anim = 0;
+    track.scrollLeft = left;
+    track.style.scrollSnapType = "";
+    targetPage = null;
+    render(currentPage());
+  };
+  const goToPage = (page, behavior = "smooth") => {
+    const p = Math.max(0, Math.min(pages() - 1, page));
+    const left = Math.min(p * perView() * step(), track.scrollWidth - track.clientWidth);
+    render(p);
+    if (behavior !== "smooth" || reduceMotion.matches) { finish(left); return; }
+    cancelAnimationFrame(anim);
+    targetPage = p;
+    track.style.scrollSnapType = "none";
+    const from = track.scrollLeft;
+    const start = performance.now();
+    const duration = 420;
+    const frame = (now) => {
+      const t = Math.min(1, (now - start) / duration);
+      if (t >= 1) { finish(left); return; }
+      track.scrollLeft = from + (left - from) * (1 - (1 - t) ** 3);
+      anim = requestAnimationFrame(frame);
+    };
+    anim = requestAnimationFrame(frame);
+    clearTimeout(animTimer);
+    animTimer = setTimeout(() => finish(left), duration + 80);
+  };
+  const shift = (delta) => goToPage((targetPage ?? currentPage()) + delta);
+
+  prevBtn.addEventListener("click", () => shift(-1));
+  nextBtn.addEventListener("click", () => shift(1));
+  track.addEventListener("keydown", (e) => {
+    if (e.target !== track) return;
+    if (e.key === "ArrowLeft") { e.preventDefault(); shift(-1); }
+    if (e.key === "ArrowRight") { e.preventDefault(); shift(1); }
+  });
+  if ("onscrollend" in window) {
+    track.addEventListener("scrollend", update);
+  } else {
+    let scrollTimer;
+    track.addEventListener("scroll", () => {
+      clearTimeout(scrollTimer);
+      scrollTimer = setTimeout(update, 150);
+    }, { passive: true });
+  }
+  window.addEventListener("resize", update);
+  update();
+
+  const box = document.getElementById("pf-lightbox");
+  const boxImg = box.querySelector(".lb-img");
+  const boxCount = box.querySelector(".lb-count");
+  const images = items.map((item) => item.querySelector("img"));
+  let current = 0;
+  let opener = null;
+
+  const show = (index) => {
+    current = (index + images.length) % images.length;
+    boxImg.src = images[current].currentSrc || images[current].src;
+    boxImg.alt = images[current].alt;
+    boxImg.style.setProperty("--lb-ratio", images[current].getAttribute("width") / images[current].getAttribute("height"));
+    boxCount.textContent = `${current + 1} / ${images.length}`;
+  };
+  const closeBox = () => box.open && box.close();
+
+  track.addEventListener("click", (e) => {
+    const btn = e.target.closest(".pf-open");
+    if (!btn) return;
+    opener = btn;
+    show(Number(btn.dataset.index));
+    const scrollbar = window.innerWidth - document.documentElement.clientWidth;
+    document.documentElement.style.overflow = "hidden";
+    if (scrollbar > 0) document.body.style.paddingRight = `${scrollbar}px`;
+    box.showModal();
+  });
+  box.querySelector(".lb-close").addEventListener("click", closeBox);
+  box.querySelector(".lb-prev").addEventListener("click", () => show(current - 1));
+  box.querySelector(".lb-next").addEventListener("click", () => show(current + 1));
+  box.querySelector(".lb-stage").addEventListener("click", (e) => {
+    if (e.target === e.currentTarget) closeBox();
+  });
+  box.addEventListener("keydown", (e) => {
+    if (e.key === "ArrowLeft") { e.preventDefault(); show(current - 1); }
+    if (e.key === "ArrowRight") { e.preventDefault(); show(current + 1); }
+  });
+  box.addEventListener("close", () => {
+    document.documentElement.style.overflow = "";
+    document.body.style.paddingRight = "";
+    const page = Math.floor(current / perView());
+    if (page !== currentPage()) goToPage(page, "instant");
+    (items[current].querySelector(".pf-open") || opener)?.focus({ preventScroll: true });
+  });
+
+  let touchX = 0;
+  let touchY = 0;
+  box.addEventListener("touchstart", (e) => {
+    touchX = e.touches[0].clientX;
+    touchY = e.touches[0].clientY;
+  }, { passive: true });
+  box.addEventListener("touchend", (e) => {
+    const dx = e.changedTouches[0].clientX - touchX;
+    const dy = e.changedTouches[0].clientY - touchY;
+    if (Math.abs(dx) > 50 && Math.abs(dx) > Math.abs(dy)) show(current + (dx < 0 ? 1 : -1));
+  });
+}
+
 function makeLead() {
   const n = document.querySelector("#leadname")?.value || "не указано";
   const city = document.querySelector("#leadcity")?.value || "не указан";
