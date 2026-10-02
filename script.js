@@ -77,6 +77,17 @@ if (burger && menu) {
   });
 }
 
+const faqItems = document.querySelectorAll(".home .faq details");
+faqItems.forEach((item, i) => {
+  item.open = i === 0;
+  item.addEventListener("toggle", () => {
+    if (!item.open) return;
+    faqItems.forEach((other) => {
+      if (other !== item) other.open = false;
+    });
+  });
+});
+
 function makeLead() {
   const n = document.querySelector("#leadname")?.value || "не указано";
   const city = document.querySelector("#leadcity")?.value || "не указан";
