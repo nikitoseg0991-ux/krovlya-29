@@ -1219,11 +1219,11 @@ footer small, .legal { color: #A8A6A2; }
   background-size: cover;
   background-position: center;
 }
-.home .offer-body { padding: 16px 2px 0; }
+.home .offer-body { padding: 16px 18px 0; }
 .home .offer h3 { font-size: 22px; margin: 0 0 6px; letter-spacing: -0.03em; }
 .home .offer p { font-size: 15px; }
 .home .offer-foot {
-  margin: 8px 2px 0;
+  margin: 8px 18px 0;
   padding-top: 0;
   border-top: 0;
 }
@@ -1291,7 +1291,7 @@ footer small, .legal { color: #A8A6A2; }
 
 #calc { padding: 24px 0 20px; background: #f6f4f0; }
 #calc .head h2 { font-size: 32px; letter-spacing: -0.035em; }
-#calc .calc-shell { border-radius: 0; overflow: visible; box-shadow: none; background: transparent; }
+#calc .calc-shell { border: 0; border-radius: 0; overflow: visible; box-shadow: none; background: transparent; }
 #calc .cover-card,
 #calc .stepper,
 #calc .seg,
@@ -1347,6 +1347,41 @@ footer small, .legal { color: #A8A6A2; }
   .home .cta-band { padding: 22px 0 26px; }
   .home .cta-phone a { font-size: 24px; }
   #calc { padding: 20px 0 14px; }
+}
+
+@media (min-width: 981px) {
+  .home { --home-header: 61px; }
+  .home #calc, .home #faq { scroll-margin-top: var(--home-header); }
+  .home .hero,
+  .home #calc,
+  .home .offers {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    min-height: calc(100vh - var(--home-header));
+    min-height: calc(100svh - var(--home-header));
+  }
+  .home .hero > .wrap,
+  .home #calc > .wrap,
+  .home .offers > .wrap { width: 100%; }
+  .home .hero { padding: 32px 0; }
+  .home .hero-stage { gap: 56px; }
+  .home .hero-photo {
+    height: clamp(420px, calc(100svh - var(--home-header) - 64px), 720px);
+  }
+  .home .hero h1 { font-size: 52px; }
+  .home .hero .lead { margin-top: 20px; }
+  .home .hero-personal { margin-top: 16px; }
+  .home .hero .actions { margin-top: 32px; }
+  .home .hero-call { margin-top: 16px; }
+  .home .hero-rate { right: 20px; bottom: 20px; padding: 12px 16px 10px; font-size: 24px; }
+  .home #calc, .home .offers { padding: 40px 0; }
+  .home .offer-photo { height: 190px; }
+}
+
+@media (min-width: 981px) and (max-height: 960px) {
+  .home #calc, .home .offers { padding: 24px 0; }
+  .home .offer-photo { height: 150px; }
 }
 
 
