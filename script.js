@@ -77,7 +77,7 @@ if (burger && menu) {
   });
 }
 
-const faqItems = document.querySelectorAll(".home .faq details");
+const faqItems = document.querySelectorAll(".home .faq details, .inner .faq details");
 faqItems.forEach((item, i) => {
   item.open = i === 0;
   item.addEventListener("toggle", () => {
