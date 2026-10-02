@@ -2300,7 +2300,7 @@ footer small, .legal { color: #A8A6A2; }
 }
 
 /* City landing: same calculator and works, without the homepage full-screen sections. */
-.inner.city #calc { scroll-margin-top: 76px; padding: 56px 0 48px; }
+.inner.city #calc { scroll-margin-top: 76px; }
 .inner.city .offers { background: #fff; }
 .inner.city .offer-grid {
   display: grid;
@@ -2474,7 +2474,6 @@ footer small, .legal { color: #A8A6A2; }
   .inner.city .offer-grid { grid-template-columns: 1fr 1fr; }
 }
 @media (max-width: 760px) {
-  .inner.city #calc { padding: 36px 0 28px; }
   .inner.city .offer-grid { grid-template-columns: 1fr; }
   .inner.city .offer-actions { flex-direction: column; }
   .inner.city .offer-actions .btn { width: 100%; }
@@ -2483,4 +2482,25 @@ footer small, .legal { color: #A8A6A2; }
   .inner.city .lb-prev, .inner.city .lb-next { top: auto; bottom: 18px; transform: none; }
   .inner.city .lb-prev { left: calc(50% - 72px); }
   .inner.city .lb-next { right: calc(50% - 72px); }
+}
+
+/* City section rhythm, same scale as the homepage sections, without full-viewport height. */
+.inner.city .section,
+.inner.city #calc {
+  padding-top: 64px;
+  padding-bottom: 64px;
+}
+@media (min-width: 981px) {
+  .inner.city .section,
+  .inner.city #calc {
+    padding-top: clamp(80px, 11svh, 112px);
+    padding-bottom: clamp(80px, 11svh, 112px);
+  }
+}
+@media (max-width: 760px) {
+  .inner.city .section,
+  .inner.city #calc {
+    padding-top: 48px;
+    padding-bottom: 48px;
+  }
 }
