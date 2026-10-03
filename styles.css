@@ -2593,72 +2593,44 @@ footer small, .legal { color: #A8A6A2; }
   .inner.zamena .material-grid { grid-template-columns: 1fr; }
 }
 
-/* Replacement page only: center the composition, keep card copy left-aligned. */
+/* Replacement page: center headings, short leads, FAQ column and final CTA only. */
 .inner.zamena .section > .wrap > .head,
-.inner.zamena .pf-head {
-  max-width: 820px;
-  margin-left: auto;
-  margin-right: auto;
-  text-align: center;
-}
-.inner.zamena .section > .wrap > .head h2,
-.inner.zamena .pf-head h2 {
-  text-wrap: balance;
-}
-.inner.zamena .section > .wrap > .head p,
-.inner.zamena .pf-head p {
-  max-width: 780px;
-  margin: 0 auto;
-}
-.inner.zamena .include-grid {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  align-items: stretch;
-  gap: 20px;
-}
-.inner.zamena .include-card { text-align: left; }
-.inner.zamena .include-grid > .include-card {
-  flex: 1 1 calc(25% - 15px);
-  min-width: calc(25% - 15px);
-  max-width: calc(25% - 15px);
-}
+.inner.zamena .pf-head,
 .inner.zamena #calc .head {
-  max-width: 820px;
   margin-left: auto;
   margin-right: auto;
   text-align: center;
 }
+.inner.zamena .pf-head { max-width: none; }
+.inner.zamena .section > .wrap > .head p,
+.inner.zamena .pf-head p,
 .inner.zamena #calc .head p {
   max-width: 780px;
   margin-left: auto;
   margin-right: auto;
 }
-.inner.zamena .choice-grid,
-.inner.zamena .material-grid,
-.inner.zamena .steps { width: 100%; }
+.inner.zamena .include-card,
 .inner.zamena .offer,
 .inner.zamena .step-item,
+.inner.zamena .price-note,
 .inner.zamena .calc-shell,
-.inner.zamena .price-note { text-align: left; }
+.inner.zamena .faq details,
+.inner.zamena .faq summary,
+.inner.zamena .faq details p { text-align: left; }
 .inner.zamena .faq-grid {
-  display: block;
   max-width: 860px;
   margin-inline: auto;
+  grid-template-columns: minmax(0, 1fr);
 }
 .inner.zamena .faq .head {
   max-width: none;
   margin-bottom: 28px;
 }
-.inner.zamena .faq details,
-.inner.zamena .faq summary,
-.inner.zamena .faq details p { text-align: left; }
 .inner.zamena .cta-panel {
   display: flex;
   flex-direction: column;
   align-items: center;
   text-align: center;
-  gap: 14px;
 }
 .inner.zamena .cta-band .cta-copy,
 .inner.zamena .cta-band .cta-text,
@@ -2679,20 +2651,8 @@ footer small, .legal { color: #A8A6A2; }
   justify-content: center;
   gap: 12px;
 }
-.inner.zamena .cta-card .btn { width: auto; min-width: 220px; }
-@media (max-width: 1100px) {
-  .inner.zamena .include-grid > .include-card {
-    flex-basis: calc(50% - 10px);
-    min-width: calc(50% - 10px);
-    max-width: calc(50% - 10px);
-  }
-  .inner.zamena #cost .include-grid > .include-card:last-child {
-    flex-basis: 100%;
-    min-width: 100%;
-    max-width: 100%;
-  }
-}
-@media (max-width: 760px) {
+.inner.zamena .cta-card .btn { width: auto; }
+@media (max-width: 768px) {
   .inner.zamena .section > .wrap > .head p,
   .inner.zamena .pf-head p,
   .inner.zamena #calc .head p {
@@ -2701,11 +2661,8 @@ footer small, .legal { color: #A8A6A2; }
     margin-right: 0;
     text-align: left;
   }
-  .inner.zamena .include-grid > .include-card {
-    flex-basis: 100%;
-    min-width: 100%;
-    max-width: 100%;
-  }
-  .inner.zamena .cta-card { flex-direction: column; align-items: stretch; }
+}
+@media (max-width: 760px) {
+  .inner.zamena .cta-card { flex-direction: column; }
   .inner.zamena .cta-card .btn { width: 100%; }
 }
