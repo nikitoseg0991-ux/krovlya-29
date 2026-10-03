@@ -1934,18 +1934,18 @@ footer small, .legal { color: #A8A6A2; }
 }
 
 @media (min-width: 981px) {
-  .home .portfolio { --pf-per: 3; --pf-gap: 24px; padding: clamp(84px, 10svh, 118px) 0; }
+  .home .portfolio { --pf-per: 3; --pf-gap: 18px; }
   .home .pf-item:nth-child(2n + 1) { scroll-snap-align: none; }
   .home .pf-item:nth-child(3n + 1) { scroll-snap-align: start; }
-  .home .pf-head { margin-bottom: 48px; }
+  .home .pf-head { margin-bottom: 16px; }
   .home .pf-head .eyebrow { font-size: 13px; }
   .home .pf-head h2 { margin: 12px 0 16px; font-size: 56px; line-height: 1.04; letter-spacing: -0.045em; }
   .home .pf-head p { font-size: 19px; }
   .home .pf-open { border-radius: 16px; }
-  .home .pf-nav { margin-top: 32px; gap: 24px; }
+  .home .pf-nav { margin-top: 16px; gap: 24px; }
   .home .pf-arrow { width: 56px; height: 56px; font-size: 22px; }
   .home .pf-count { font-size: 19px; }
-  .home .pf-cta { flex-direction: row; align-items: center; justify-content: space-between; gap: 40px; margin-top: 48px; padding-top: 40px; }
+  .home .pf-cta { flex-direction: row; align-items: center; justify-content: space-between; gap: 40px; width: min(100%, 1320px); margin: 20px auto 0; padding-top: 18px; }
   .home .pf-cta h3 { font-size: 30px; }
   .home .pf-cta p { font-size: 18px; }
   .home .pf-cta .btn { min-height: 56px; padding: 0 26px; font-size: 16px; border-radius: 10px; }
@@ -2516,11 +2516,11 @@ footer small, .legal { color: #A8A6A2; }
   .inner.city .pf-item:nth-child(2n + 1) { scroll-snap-align: start; }
 }
 @media (min-width: 981px) {
-  .inner.city .portfolio { --pf-per: 3; --pf-gap: 24px; }
+  .inner.city .portfolio { --pf-per: 3; --pf-gap: 18px; }
   .inner.city .pf-item:nth-child(2n + 1) { scroll-snap-align: none; }
   .inner.city .pf-item:nth-child(3n + 1) { scroll-snap-align: start; }
   .inner.city .pf-open { border-radius: 16px; }
-  .inner.city .pf-nav { margin-top: 28px; }
+  .inner.city .pf-nav { margin-top: 16px; }
   .inner.city .pf-arrow { width: 56px; height: 56px; font-size: 22px; }
 }
 @media (max-width: 980px) {
@@ -2603,4 +2603,36 @@ footer small, .legal { color: #A8A6A2; }
 }
 @media (max-width: 760px) {
   body:not(.home):not(.inner) .section { padding: 46px 0; min-height: 0; }
+}
+
+/* Portfolio scale. Same carousel on the homepage, repair, replacement and city pages. */
+@media (min-width: 981px) {
+  .home .section.portfolio,
+  .inner .section.portfolio {
+    height: auto;
+    min-height: 100svh;
+    padding-top: clamp(20px, 3svh, 36px);
+    padding-bottom: clamp(20px, 3svh, 36px);
+  }
+  .home .section.portfolio > .wrap,
+  .inner .section.portfolio > .wrap {
+    width: min(1840px, 100%);
+    max-width: none;
+    padding-inline: 16px;
+  }
+  .home .section.portfolio .pf-head,
+  .inner .section.portfolio .pf-head { margin-bottom: 14px; }
+}
+@media (max-width: 980px) {
+  .home .section.portfolio,
+  .inner .section.portfolio {
+    height: auto;
+    min-height: 0;
+  }
+}
+@media (max-width: 760px) {
+  .home .section.portfolio,
+  .inner .section.portfolio { padding-top: 36px; padding-bottom: 36px; }
+  .home .section.portfolio .pf-arrow,
+  .inner .section.portfolio .pf-arrow { width: 52px; height: 52px; }
 }
