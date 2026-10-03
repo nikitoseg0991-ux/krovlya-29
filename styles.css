@@ -2506,6 +2506,24 @@ footer small, .legal { color: #A8A6A2; }
 }
 
 /* Repair landing only. City and service pages do not use .repair. */
+/* Repair landing rhythm only. City pages keep the shared .inner.city values. */
+.inner.repair.city .section {
+  padding-top: 64px;
+  padding-bottom: 64px;
+}
+@media (min-width: 981px) {
+  .inner.repair.city .section {
+    padding-top: clamp(112px, 15svh, 168px);
+    padding-bottom: clamp(112px, 15svh, 168px);
+  }
+}
+@media (max-width: 760px) {
+  .inner.repair.city .section {
+    padding-top: 48px;
+    padding-bottom: 48px;
+  }
+}
+
 .inner.repair .repair-note {
   margin: 20px 0 0;
   max-width: 16em;
