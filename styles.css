@@ -2551,20 +2551,37 @@ footer small, .legal { color: #A8A6A2; }
 }
 
 /* Replacement landing only. Repair and city pages do not use .zamena. */
-.inner.zamena.city .section {
-  padding-top: 64px;
-  padding-bottom: 64px;
+.inner.zamena.city .section,
+.inner.zamena.city #calc {
+  padding-top: 60px;
+  padding-bottom: 60px;
 }
 @media (min-width: 981px) {
-  .inner.zamena.city .section {
-    padding-top: clamp(112px, 15svh, 168px);
-    padding-bottom: clamp(112px, 15svh, 168px);
+  .inner.zamena.city .section,
+  .inner.zamena.city #calc {
+    padding-top: 80px;
+    padding-bottom: 80px;
+  }
+}
+@media (min-width: 1280px) {
+  .inner.zamena.city .section,
+  .inner.zamena.city #calc {
+    padding-top: 96px;
+    padding-bottom: 96px;
+  }
+}
+@media (min-width: 1600px) {
+  .inner.zamena.city .section,
+  .inner.zamena.city #calc {
+    padding-top: 118px;
+    padding-bottom: 118px;
   }
 }
 @media (max-width: 760px) {
-  .inner.zamena.city .section {
-    padding-top: 48px;
-    padding-bottom: 48px;
+  .inner.zamena.city .section,
+  .inner.zamena.city #calc {
+    padding-top: 46px;
+    padding-bottom: 46px;
   }
 }
 .inner.zamena .zamena-note {
@@ -2665,4 +2682,75 @@ footer small, .legal { color: #A8A6A2; }
 @media (max-width: 760px) {
   .inner.zamena .cta-card { flex-direction: column; }
   .inner.zamena .cta-card .btn { width: 100%; }
+}
+
+/* Denser rhythm and larger desktop type. Grids, photo ratio and centering stay as they are. */
+.inner.zamena .wrap { max-width: 1320px; }
+.inner.zamena .section > .wrap > .head:not(.pf-head) { max-width: 920px; }
+@media (min-width: 981px) {
+  .inner.zamena .section h2,
+  .inner.zamena #calc .head h2 {
+    font-size: 46px;
+    line-height: 1.12;
+    letter-spacing: -0.04em;
+  }
+  .inner.zamena .section > .wrap > .head { margin-bottom: 32px; }
+  .inner.zamena .section > .wrap > .head p,
+  .inner.zamena .pf-head p,
+  .inner.zamena #calc .head p {
+    font-size: 18px;
+    line-height: 1.55;
+  }
+  .inner.zamena .include-card { padding: 26px 24px 24px; }
+  .inner.zamena .include-card h3 { font-size: 22px; }
+  .inner.zamena .include-card p,
+  .inner.zamena .price-note { font-size: 16px; line-height: 1.55; }
+  .inner.zamena .offer h3 { font-size: 24px; }
+  .inner.zamena .offer p { font-size: 16px; }
+  .inner.zamena .offer-photo { height: 176px; }
+  .inner.zamena .offer-foot b { font-size: 24px; }
+  .inner.zamena .step-item .stepno { width: 64px; height: 64px; font-size: 20px; }
+  .inner.zamena .step-item h3 { font-size: 22px; }
+  .inner.zamena .step-item p { font-size: 16px; }
+  .inner.zamena .faq summary { min-height: 80px; font-size: 20px; }
+  .inner.zamena .faq details p { font-size: 17px; }
+  .inner.zamena .faq-grid { max-width: 920px; }
+}
+@media (min-width: 1200px) {
+  .inner.zamena .inner-hero h1 { font-size: 60px; }
+  .inner.zamena .inner-hero .lead { font-size: 19px; }
+  .inner.zamena .zamena-note { font-size: 30px; }
+  .inner.zamena .hero-call { font-size: 22px; }
+  .inner.zamena .hero-facts { font-size: 16px; }
+  .inner.zamena .city-hero-photo { height: 560px; }
+  .inner.zamena .inner-hero .btn { min-height: 56px; font-size: 16px; }
+  .inner.zamena #calc .cover-card .thumb { height: 168px; }
+  .inner.zamena #calc .calc-params,
+  .inner.zamena #calc .calc { padding: 32px; }
+}
+@media (min-width: 1400px) {
+  .inner.zamena .section h2,
+  .inner.zamena #calc .head h2 { font-size: 52px; }
+  .inner.zamena .section > .wrap > .head p,
+  .inner.zamena .pf-head p,
+  .inner.zamena #calc .head p { font-size: 19px; }
+  .inner.zamena .include-card { padding: 32px 28px 28px; }
+  .inner.zamena .include-card h3 { font-size: 24px; }
+  .inner.zamena .include-card p,
+  .inner.zamena .price-note { font-size: 17px; }
+  .inner.zamena .step-item h3 { font-size: 24px; }
+  .inner.zamena .step-item p { font-size: 17px; }
+  .inner.zamena .faq summary { font-size: 22px; }
+  .inner.zamena .faq details p { font-size: 18px; }
+  .inner.zamena .cta-panel { padding: 64px 64px 56px; }
+  .inner.zamena .cta-band .cta-text { font-size: 20px; }
+  .inner.zamena .cta-card .btn { min-height: 56px; font-size: 16px; }
+}
+@media (min-width: 1600px) {
+  .inner.zamena .inner-hero h1 { font-size: 68px; }
+  .inner.zamena .inner-hero .lead { font-size: 20px; }
+  .inner.zamena .zamena-note { font-size: 32px; }
+  .inner.zamena .city-hero-photo { height: 600px; }
+  .inner.zamena .offer-photo { height: 200px; }
+  .inner.zamena #calc .cover-card .thumb { height: 188px; }
 }
