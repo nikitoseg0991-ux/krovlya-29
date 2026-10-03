@@ -562,6 +562,7 @@ body.reading .wrap.breadcrumb { max-width: 850px; }
 .section.article .example li:last-child { margin-bottom: 0; }
 .section.article .cta { margin-top: 36px; padding-top: 8px; }
 .section .grid3 + h2 { margin-top: 40px; }
+.inner .catalog-grid + .head { margin-top: 64px; }
 .section.article .cta h2 { margin-top: 0; }
 @media (max-width: 760px) {
   .section.article h1 { font-size: 32px; }
@@ -2060,6 +2061,10 @@ footer small, .legal { color: #A8A6A2; }
   letter-spacing: -0.045em;
 }
 .inner .inner-hero .lead { max-width: 40em; margin: 16px 0 0; font-size: clamp(16px, 0.35vw + 15px, 20px); line-height: 1.5; }
+.inner .inner-hero .lead a { color: var(--ink); font-weight: 600; }
+.inner .inner-hero .lead a:hover { color: var(--accent-hover); }
+.inner .inner-hero .head h1 { margin-left: auto; margin-right: auto; }
+.inner .inner-hero .head .lead { margin: 16px auto 0; }
 .inner .inner-rate {
   margin: 20px 0 0;
   font-size: clamp(32px, 4vw, 46px);
