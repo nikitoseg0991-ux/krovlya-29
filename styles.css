@@ -1158,6 +1158,9 @@ footer small, .legal { color: #A8A6A2; }
   object-fit: cover;
   object-position: center 42%;
 }
+.home .hero-photo img.hero-master {
+  object-position: center 18%;
+}
 .home .hero-copy {
   position: relative;
   z-index: 1;
