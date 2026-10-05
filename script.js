@@ -34,6 +34,7 @@ function setArea(value) {
   if (el) el.value = next;
   if (range) range.value = next;
   calc();
+  trackCalculatorUsed();
 }
 
 function bumpArea(delta) {
@@ -42,8 +43,30 @@ function bumpArea(delta) {
   setArea((+el.value || 0) + delta);
 }
 
-document.addEventListener("input", calc);
-document.addEventListener("change", calc);
+let calculatorGoalSent = false;
+
+function trackCalculatorUsed() {
+  if (calculatorGoalSent) return;
+  calculatorGoalSent = true;
+  if (typeof window.ym === "function") {
+    ym(113433742, "reachGoal", "calculator_used");
+  }
+}
+
+function isCalculatorControl(el) {
+  if (!el || !el.id) return false;
+  return el.id === "area" || el.id === "area-range" || el.id === "work" ||
+    el.id === "ob" || el.id === "counter" || el.id === "vvz" || el.id === "demo";
+}
+
+document.addEventListener("input", (e) => {
+  calc();
+  if (isCalculatorControl(e.target)) trackCalculatorUsed();
+});
+document.addEventListener("change", (e) => {
+  calc();
+  if (isCalculatorControl(e.target)) trackCalculatorUsed();
+});
 document.querySelectorAll(".cover-card").forEach((card) => {
   card.addEventListener("click", () => {
     document.querySelectorAll(".cover-card").forEach((c) => c.classList.remove("is-active"));
@@ -51,6 +74,7 @@ document.querySelectorAll(".cover-card").forEach((card) => {
     const work = document.querySelector("#work");
     if (work) work.value = card.dataset.work;
     calc();
+    trackCalculatorUsed();
   });
 });
 document.getElementById("area-minus")?.addEventListener("click", () => bumpArea(-10));
