@@ -127,9 +127,26 @@
           <div class="chips">
             <label class="seg"><input id="ob" type="checkbox"><span>Обрешётка</span><b>+340 ₽/м²</b><i class="seg-mark" aria-hidden="true"></i></label>
             <label class="seg"><input id="counter" type="checkbox"><span>Контробрешётка</span><b>+250 ₽/м²</b><i class="seg-mark" aria-hidden="true"></i></label>
-            <label class="seg"><input id="vvz" type="checkbox"><span>ВВЗ</span><b>+180 ₽/м²</b><i class="seg-mark" aria-hidden="true"></i></label>
+            <label class="seg"><input id="vvz" type="checkbox"><span>Ветровлагозащитная плёнка</span><b>+180 ₽/м²</b><i class="seg-mark" aria-hidden="true"></i></label>
           </div>
           </div>
+          <details class="calc-detail" id="calc-detail">
+  <summary>Подробный расчёт: демонтаж и доборные элементы <span>Раскрыть ↓</span></summary>
+  <div class="calc-detail-body">
+    <label class="calc-demolition"><input id="demo" type="checkbox"> Нужен демонтаж старого покрытия <small>20% от тарифа монтажа выбранного покрытия за м²</small></label>
+    <label class="calc-demo-area">Площадь демонтажа, м² <input id="demo-area" type="number" min="0" max="500" step="1" placeholder="Как площадь крыши"></label>
+    <p class="calc-detail-help">Укажите длину только тех элементов, монтаж которых нужен. Незаполненные позиции не включаются в сумму.</p>
+    <div class="calc-detail-rows">
+      <label>Коньковая планка <small>570 ₽/пог. м</small><input class="calc-meter" data-label="Монтаж конька" data-price="570" type="number" min="0" step="0.1" placeholder="0 м"></label>
+      <label>Торцевая (ветровая) планка <small>380 ₽/пог. м</small><input class="calc-meter" data-label="Монтаж торцевой планки" data-price="380" type="number" min="0" step="0.1" placeholder="0 м"></label>
+      <label>Карнизная планка (капельник) <small>300 ₽/пог. м</small><input class="calc-meter" data-label="Монтаж карнизной планки" data-price="300" type="number" min="0" step="0.1" placeholder="0 м"></label>
+      <label>Планка примыкания <small>270 ₽/пог. м</small><input class="calc-meter" data-label="Монтаж примыкания" data-price="270" type="number" min="0" step="0.1" placeholder="0 м"></label>
+      <label>Водосточные желоба <small>770 ₽/пог. м</small><input class="calc-meter" data-label="Монтаж желобов" data-price="770" type="number" min="0" step="0.1" placeholder="0 м"></label>
+      <label>Водосточные трубы <small>720 ₽/пог. м</small><input class="calc-meter" data-label="Монтаж труб" data-price="720" type="number" min="0" step="0.1" placeholder="0 м"></label>
+      <label>Снегозадержатели <small>670 ₽/пог. м</small><input class="calc-meter" data-label="Монтаж снегозадержателей" data-price="670" type="number" min="0" step="0.1" placeholder="0 м"></label>
+    </div>
+  </div>
+</details>
         </div>
         <form class="calc" onsubmit="return false">
           <div class="result">
@@ -145,14 +162,15 @@
                 <li class="x-none">Не выбраны</li>
                 <li class="x-ob">Обрешётка <b>+340 ₽/м²</b></li>
                 <li class="x-counter">Контробрешётка <b>+250 ₽/м²</b></li>
-                <li class="x-vvz">ВВЗ <b>+180 ₽/м²</b></li>
+                <li class="x-vvz">Ветровлагозащитная плёнка <b>+180 ₽/м²</b></li>
               </ul>
             </div>
-            <p class="small">Точная стоимость определяется после уточнения размеров и состава работ.</p>
+            <ul id="calc-itemized" class="calc-itemized"></ul>
+            <p class="small">Рассчитана только стоимость выбранных работ. Доборные элементы и другие необходимые работы без указанных размеров не включены. Материалы отдельно. Итоговая цена уточняется после осмотра.</p>
             <a class="calc-note" href="ceny.html">Материалы считаются отдельно — смотреть прайс на работы →</a>
           </div>
           <div class="calc-actions">
-            <a class="btn primary" href="kontakty.html">Получить точный расчёт</a>
+            <button class="btn primary" id="calc-open" type="button">Получить точный расчёт</button>
             <p class="calc-call">Или позвоните: <a href="tel:+79214840874">+7 921 484-08-74</a></p>
           </div>
         </form>
@@ -160,7 +178,16 @@
     </div>
   </div>
 </section>
-
+<dialog id="calc-modal" class="calc-modal" aria-labelledby="calc-modal-title">
+  <button type="button" id="calc-close" class="calc-close" aria-label="Закрыть">×</button>
+  <h2 id="calc-modal-title">Ваш предварительный расчёт</h2>
+  <p class="calc-modal-total" id="calc-modal-total"></p>
+  <div id="calc-modal-lines" class="calc-modal-lines"></div>
+  <p class="calc-modal-warning">Это стоимость только выбранных работ, без материалов. Окончательная сумма зависит от размеров и особенностей крыши.</p>
+  <button class="btn primary" id="calc-copy" type="button">Скопировать заявку для MAX</button>
+  <a class="btn calc-max" href="https://max.ru/u/f9LHodD0cOJztIhUMjfDdnmmolvnSJQpTHQgJxTjDoeIrlFngw5k__L-A5U" target="_blank" rel="noopener">Открыть MAX и отправить</a>
+  <p class="calc-copy-status" id="calc-copy-status" aria-live="polite"></p>
+</dialog>
 <section class="section offers">
   <div class="wrap">
     <div class="head">
