@@ -2696,3 +2696,32 @@ footer small, .legal { color: #A8A6A2; }
   .home .section.portfolio .pf-arrow,
   .inner .section.portfolio .pf-arrow { width: 52px; height: 52px; }
 }
+
+/* Calculator v2 — detailed optional estimate */
+.calc-detail{margin-top:18px;border:1px solid #dedede;border-radius:16px;background:#fff;overflow:hidden}
+.calc-detail summary{padding:18px;cursor:pointer;font-weight:700;list-style:none;display:flex;justify-content:space-between;gap:12px}
+.calc-detail summary::-webkit-details-marker{display:none}
+.calc-detail summary span{color:#dc6929;font-size:13px;white-space:nowrap}
+.calc-detail-body{padding:0 18px 18px}
+.calc-demolition{display:block;font-weight:650;margin:12px 0}
+.calc-demolition input{margin-right:8px}
+.calc-demolition small{display:block;color:#777;font-weight:400;margin:5px 0 0 24px}
+.calc-demo-area{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin:14px 0}
+.calc-demo-area input,.calc-detail-rows input{width:95px;padding:10px;border:1px solid #d4d4d4;border-radius:9px}
+.calc-detail-help{font-size:13px;color:#777}
+.calc-detail-rows{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+.calc-detail-rows label{display:flex;flex-direction:column;gap:5px;padding:12px;border:1px solid #eee;border-radius:10px;font-size:14px}
+.calc-detail-rows small{color:#777}
+.calc-itemized{padding:0;list-style:none;margin:16px 0}
+.calc-itemized li{display:flex;justify-content:space-between;gap:12px;border-bottom:1px solid #eee;padding:9px 0;font-size:13px}
+.calc-itemized b{white-space:nowrap}
+.calc-modal{border:0;border-radius:20px;padding:28px;width:min(520px,calc(100% - 24px));max-height:90vh;box-shadow:0 22px 70px #0004}
+.calc-modal::backdrop{background:#0008}
+.calc-close{position:absolute;right:18px;top:12px;background:transparent;border:0;font-size:30px;cursor:pointer}
+.calc-modal h2{padding-right:20px}
+.calc-modal-total{font-size:32px;font-weight:800;color:#db6b29}
+.calc-modal-lines{white-space:pre-line;line-height:1.6;font-size:13px;max-height:32vh;overflow:auto;padding:12px;background:#f7f7f7;border-radius:12px}
+.calc-modal-warning,.calc-copy-status{font-size:13px;color:#666}
+.calc-modal .btn{display:block;text-align:center;margin-top:12px;width:100%;cursor:pointer}
+.calc-max{background:#f2f2f2;color:#222}
+@media(max-width:700px){.calc-detail-rows{grid-template-columns:1fr}.calc-modal{padding:20px}}
