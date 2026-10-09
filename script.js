@@ -1,30 +1,37 @@
+function calcDetails() {
+  const area = Math.max(1, Math.min(500, Number(document.querySelector("#area")?.value) || 100));
+  const work = Number(document.querySelector("#work")?.value) || 800;
+  const name = document.querySelector(".cover-card.is-active")?.dataset.name || document.querySelector("#work")?.selectedOptions[0]?.textContent || "Покрытие";
+  const lines = [{label:"Монтаж: " + name, qty:area, unit:"м²", rate:work}];
+  for (const [id,label,rate] of [["ob","Обрешётка",340],["counter","Контробрешётка",250],["vvz","Ветровлагозащитная плёнка",180]]) {
+    if(document.getElementById(id)?.checked) lines.push({label,qty:area,unit:"м²",rate});
+  }
+  if(document.getElementById("demo")?.checked) {
+    const raw = document.getElementById("demo-area")?.value;
+    const qty = raw === "" ? area : Math.max(0, Math.min(500,Number(raw)||0));
+    if(qty>0) lines.push({label:"Демонтаж старой кровли (20% от монтажа)",qty,unit:"м²",rate:work*0.2});
+  }
+  document.querySelectorAll(".calc-meter").forEach(input=>{
+    const qty=Math.max(0,Number(input.value)||0);
+    if(qty>0) lines.push({label:input.dataset.label,qty,unit:"пог. м",rate:Number(input.dataset.price)});
+  });
+  return {name,area,lines,total:lines.reduce((sum,l)=>sum+l.qty*l.rate,0)};
+}
+const rub = n => Math.round(n).toLocaleString("ru-RU") + " ₽";
 function calc() {
-  const areaEl = document.querySelector("#area");
-  const range = document.querySelector("#area-range");
-  let a = +areaEl?.value || 0;
-  if (areaEl) {
-    a = Math.max(1, Math.min(500, a || 0));
-    if (document.activeElement !== areaEl) areaEl.value = a;
-  }
-  if (range && document.activeElement !== range) range.value = a;
-  const work = +document.querySelector("#work")?.value || 800;
-  const demo = document.querySelector("#demo")?.checked ? 250 : 0;
-  const ob = document.querySelector("#ob")?.checked ? 340 : 0;
-  const counter = document.querySelector("#counter")?.checked ? 250 : 0;
-  const vvz = document.querySelector("#vvz")?.checked ? 180 : 0;
-  const total = a * (work + demo + ob + counter + vvz);
-  const out = document.querySelector("#sum");
-  if (out) out.textContent = total ? Math.round(total).toLocaleString("ru-RU") + " ₽" : "—";
-  const formula = document.querySelector("#formula");
-  if (formula) {
-    const active = document.querySelector(".cover-card.is-active");
-    const name = active?.dataset.name || "покрытие";
-    const parts = [a + " м²", name, work.toLocaleString("ru-RU") + " ₽/м²"];
-    if (ob) parts.push("обрешётка");
-    if (counter) parts.push("контробрешётка");
-    if (vvz) parts.push("ВВЗ");
-    formula.textContent = parts.join(" · ");
-  }
+  const areaEl=document.getElementById("area"),range=document.getElementById("area-range");
+  const a=Math.max(1,Math.min(500,Number(areaEl?.value)||1));
+  if(areaEl && document.activeElement!==areaEl) areaEl.value=a;
+  if(range && document.activeElement!==range) range.value=a;
+  const d=calcDetails();
+  const sum=document.getElementById("sum");
+  if(sum) sum.textContent=rub(d.total);
+  const formula=document.getElementById("formula");
+  if(formula) formula.textContent=d.area+" м² · "+d.name;
+  const list=document.getElementById("calc-itemized");
+  if(list) list.innerHTML=d.lines.map(l=>"<li><span>"+l.label+" ("+l.qty+" "+l.unit+")</span><b>"+rub(l.qty*l.rate)+"</b></li>").join("");
+  for(const id of ["ob","counter","vvz"]) document.querySelector(".x-"+id)?.classList.toggle("is-visible",!!document.getElementById(id)?.checked);
+  document.querySelector(".x-none")?.classList.toggle("is-hidden",["ob","counter","vvz"].some(id=>document.getElementById(id)?.checked));
 }
 
 function setArea(value) {
@@ -56,7 +63,7 @@ function trackCalculatorUsed() {
 function isCalculatorControl(el) {
   if (!el || !el.id) return false;
   return el.id === "area" || el.id === "area-range" || el.id === "work" ||
-    el.id === "ob" || el.id === "counter" || el.id === "vvz" || el.id === "demo";
+    el.id === "ob" || el.id === "counter" || el.id === "vvz" || el.id === "demo" || el.id === "demo-area" || el.classList.contains("calc-meter");
 }
 
 document.addEventListener("input", (e) => {
@@ -262,3 +269,24 @@ function makeLead() {
   navigator.clipboard?.writeText(s);
   return false;
 }
+
+function buildCalcMessage() {
+  const d=calcDetails();
+  return "Здравствуйте! Прошу уточнить стоимость кровельных работ.\n"+
+    d.lines.map(l=>l.label+": "+l.qty+" "+l.unit+" × "+rub(l.rate)+" = "+rub(l.qty*l.rate)).join("\n")+
+    "\nПредварительная стоимость работ: "+rub(d.total)+
+    "\nПонимаю, что материалы и невыбранные работы не учтены, итоговая цена после уточнения.";
+}
+document.getElementById("calc-open")?.addEventListener("click",()=>{
+  const d=calcDetails();
+  document.getElementById("calc-modal-total").textContent=rub(d.total);
+  document.getElementById("calc-modal-lines").textContent=buildCalcMessage();
+  document.getElementById("calc-copy-status").textContent="";
+  document.getElementById("calc-modal").showModal();
+});
+document.getElementById("calc-close")?.addEventListener("click",()=>document.getElementById("calc-modal").close());
+document.getElementById("calc-copy")?.addEventListener("click",async()=>{
+  const message=buildCalcMessage();
+  try {await navigator.clipboard.writeText(message);document.getElementById("calc-copy-status").textContent="Заявка скопирована. Откройте MAX и вставьте сообщение.";}
+  catch(e){document.getElementById("calc-copy-status").textContent="Не удалось скопировать автоматически. Выделите текст расчёта выше и скопируйте его.";}
+});
